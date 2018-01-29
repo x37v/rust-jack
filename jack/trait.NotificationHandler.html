@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `NotificationHandler` trait in crate `jack`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, NotificationHandler">
+
+    <title>jack::NotificationHandler - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc trait">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Trait NotificationHandler</p><div class="block items"><a class="sidebar-title" href="#provided-methods">Provided Methods</a><div class="sidebar-links"><a href="#method.thread_init">thread_init</a><a href="#method.shutdown">shutdown</a><a href="#method.freewheel">freewheel</a><a href="#method.buffer_size">buffer_size</a><a href="#method.sample_rate">sample_rate</a><a href="#method.client_registration">client_registration</a><a href="#method.port_registration">port_registration</a><a href="#method.port_rename">port_rename</a><a href="#method.ports_connected">ports_connected</a><a href="#method.graph_reorder">graph_reorder</a><a href="#method.xrun">xrun</a><a href="#method.latency">latency</a></div><a class="sidebar-title" href="#foreign-impls">Implementations on Foreign Types</a><div class="sidebar-links"><a href="#impl-NotificationHandler">()</a></div><a class="sidebar-title" href="#implementors">Implementors</a></div><p class='location'><a href='index.html'>jack</a></p><script>window.sidebarCurrent = {name: 'NotificationHandler', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Trait <a href='index.html'>jack</a>::<wbr><a class="trait" href=''>NotificationHandler</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/jack/client/callbacks.rs.html#15-144' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait NotificationHandler: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> {
+    fn <a href='#method.thread_init' class='fnname'>thread_init</a>(&amp;self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>) { ... }
+<div class='item-spacer'></div>    fn <a href='#method.shutdown' class='fnname'>shutdown</a>(&amp;mut self, _status: <a class="struct" href="../jack/struct.ClientStatus.html" title="struct jack::ClientStatus">ClientStatus</a>, _reason: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) { ... }
+<div class='item-spacer'></div>    fn <a href='#method.freewheel' class='fnname'>freewheel</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _is_freewheel_enabled: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) { ... }
+<div class='item-spacer'></div>    fn <a href='#method.buffer_size' class='fnname'>buffer_size</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _size: <a class="type" href="../jack/type.Frames.html" title="type jack::Frames">Frames</a>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a> { ... }
+<div class='item-spacer'></div>    fn <a href='#method.sample_rate' class='fnname'>sample_rate</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _srate: <a class="type" href="../jack/type.Frames.html" title="type jack::Frames">Frames</a>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a> { ... }
+<div class='item-spacer'></div>    fn <a href='#method.client_registration' class='fnname'>client_registration</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_is_registered: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) { ... }
+<div class='item-spacer'></div>    fn <a href='#method.port_registration' class='fnname'>port_registration</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_port_id: <a class="type" href="../jack/type.PortId.html" title="type jack::PortId">PortId</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_is_registered: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) { ... }
+<div class='item-spacer'></div>    fn <a href='#method.port_rename' class='fnname'>port_rename</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_port_id: <a class="type" href="../jack/type.PortId.html" title="type jack::PortId">PortId</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_old_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_new_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a> { ... }
+<div class='item-spacer'></div>    fn <a href='#method.ports_connected' class='fnname'>ports_connected</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_port_id_a: <a class="type" href="../jack/type.PortId.html" title="type jack::PortId">PortId</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_port_id_b: <a class="type" href="../jack/type.PortId.html" title="type jack::PortId">PortId</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_are_connected: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) { ... }
+<div class='item-spacer'></div>    fn <a href='#method.graph_reorder' class='fnname'>graph_reorder</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a> { ... }
+<div class='item-spacer'></div>    fn <a href='#method.xrun' class='fnname'>xrun</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a> { ... }
+<div class='item-spacer'></div>    fn <a href='#method.latency' class='fnname'>latency</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _mode: <a class="enum" href="../jack/enum.LatencyType.html" title="enum jack::LatencyType">LatencyType</a>) { ... }
+}</pre><div class='docblock'><p>Specifies callbacks for JACK.</p>
+</div>
+            <h2 id='provided-methods' class='small-section-header'>
+              Provided Methods<a href='#provided-methods' class='anchor'></a>
+            </h2>
+            <div class='methods'>
+        <h3 id='method.thread_init' class='method'><span id='thread_init.v' class='invisible'><code>fn <a href='#method.thread_init' class='fnname'>thread_init</a>(&amp;self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>)</code></span></h3><div class='docblock'><p>Called just once after the creation of the thread in which all other
+callbacks will be
+handled.</p>
+
+<p>It does not need to be suitable for real-time execution.</p>
+</div><h3 id='method.shutdown' class='method'><span id='shutdown.v' class='invisible'><code>fn <a href='#method.shutdown' class='fnname'>shutdown</a>(&amp;mut self, _status: <a class="struct" href="../jack/struct.ClientStatus.html" title="struct jack::ClientStatus">ClientStatus</a>, _reason: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code></span></h3><div class='docblock'><p>Called when the JACK server shuts down the client thread. The function
+must be written as if
+it were an asynchronous POSIX signal handler --- use only async-safe
+functions, and remember
+that it is executed from another thread. A typical funcion might set a
+flag or write to a
+pipe so that the rest of the application knows that the JACK client
+thread has shut down.</p>
+</div><h3 id='method.freewheel' class='method'><span id='freewheel.v' class='invisible'><code>fn <a href='#method.freewheel' class='fnname'>freewheel</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _is_freewheel_enabled: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code></span></h3><div class='docblock'><p>Called whenever &quot;freewheel&quot; mode is entered or leaving.</p>
+</div><h3 id='method.buffer_size' class='method'><span id='buffer_size.v' class='invisible'><code>fn <a href='#method.buffer_size' class='fnname'>buffer_size</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _size: <a class="type" href="../jack/type.Frames.html" title="type jack::Frames">Frames</a>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a></code></span></h3><div class='docblock'><p>Called whenever the size of the buffer that will be passed to <code>process</code>
+is about to change.</p>
+</div><h3 id='method.sample_rate' class='method'><span id='sample_rate.v' class='invisible'><code>fn <a href='#method.sample_rate' class='fnname'>sample_rate</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _srate: <a class="type" href="../jack/type.Frames.html" title="type jack::Frames">Frames</a>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a></code></span></h3><div class='docblock'><p>Called whenever the system sample rate changes.</p>
+</div><h3 id='method.client_registration' class='method'><span id='client_registration.v' class='invisible'><code>fn <a href='#method.client_registration' class='fnname'>client_registration</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, _is_registered: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code></span></h3><div class='docblock'><p>Called whenever a client is registered or unregistered</p>
+</div><h3 id='method.port_registration' class='method'><span id='port_registration.v' class='invisible'><code>fn <a href='#method.port_registration' class='fnname'>port_registration</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;_: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_port_id: <a class="type" href="../jack/type.PortId.html" title="type jack::PortId">PortId</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_is_registered: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>)</code></span></h3><div class='docblock'><p>Called whenever a port is registered or unregistered</p>
+</div><h3 id='method.port_rename' class='method'><span id='port_rename.v' class='invisible'><code>fn <a href='#method.port_rename' class='fnname'>port_rename</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;_: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_port_id: <a class="type" href="../jack/type.PortId.html" title="type jack::PortId">PortId</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_old_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_new_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><br>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a></code></span></h3><div class='docblock'><p>Called whenever a port is renamed.</p>
+</div><h3 id='method.ports_connected' class='method'><span id='ports_connected.v' class='invisible'><code>fn <a href='#method.ports_connected' class='fnname'>ports_connected</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;_: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_port_id_a: <a class="type" href="../jack/type.PortId.html" title="type jack::PortId">PortId</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_port_id_b: <a class="type" href="../jack/type.PortId.html" title="type jack::PortId">PortId</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_are_connected: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>)</code></span></h3><div class='docblock'><p>Called whenever ports are connected/disconnected to/from each other.</p>
+</div><h3 id='method.graph_reorder' class='method'><span id='graph_reorder.v' class='invisible'><code>fn <a href='#method.graph_reorder' class='fnname'>graph_reorder</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a></code></span></h3><div class='docblock'><p>Called whenever the processing graph is reordered.</p>
+</div><h3 id='method.xrun' class='method'><span id='xrun.v' class='invisible'><code>fn <a href='#method.xrun' class='fnname'>xrun</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a></code></span></h3><div class='docblock'><p>Called whenever an xrun occurs.</p>
+
+<p>An xrun is a buffer under or over run, which means some data has been
+missed.</p>
+</div><h3 id='method.latency' class='method'><span id='latency.v' class='invisible'><code>fn <a href='#method.latency' class='fnname'>latency</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _mode: <a class="enum" href="../jack/enum.LatencyType.html" title="enum jack::LatencyType">LatencyType</a>)</code></span></h3><div class='docblock'><p>Called whenever it is necessary to recompute the latencies for some or
+all JACK ports.</p>
+
+<p>It will be called twice each time it is needed, once being passed
+<code>CaptureLatency</code> and once
+with `PlayBackLatency. See managing and determining latency for the
+definition of each type
+of latency and related functions. TODO: clear up the &quot;see managing and
+...&quot; in the
+docstring.</p>
+
+<p>IMPORTANT: Most JACK clients do NOT need to register a latency callback.</p>
+
+<p>Clients that meed any of the following conditions do NOT need to
+register a latency
+callback:</p>
+
+<ul>
+<li><p>have only input ports</p></li>
+<li><p>have only output ports</p></li>
+<li><p>their output is totally unrelated to their input</p></li>
+<li><p>their output is not delayed relative to their input (i.e. data that
+arrives in a <code>process</code>
+is processed and output again in the same callback)</p></li>
+</ul>
+
+<p>Clients NOT registering a latency callback MUST also satisfy this
+condition</p>
+
+<ul>
+<li>have no multiple distinct internal signal pathways</li>
+</ul>
+
+<p>This means that if your client has more than 1 input and output port,
+and considers them
+always &quot;correlated&quot; (e.g. as a stereo pair), then there is only 1 (e.g.
+stereo) signal
+pathway through the client. This would be true, for example, of a
+stereo FX rack client that
+has a left/right input pair and a left/right output pair.</p>
+
+<p>However, this is somewhat a matter of perspective. The same FX rack
+client could be
+connected so that its two input ports were connected to entirely
+separate sources. Under
+these conditions, the fact that the client does not register a latency
+callback MAY result
+in port latency values being incorrect.</p>
+
+<p>Clients that do not meet any of those conditions SHOULD register a
+latency callback.</p>
+
+<p>See the documentation for <code>jack_port_set_latency_range()</code> on how the
+callback should
+operate. Remember that the mode argument given to the latency callback
+will need to be
+passed into jack_port_set_latency_range()</p>
+</div></div>
+                <h2 id='foreign-impls' class='small-section-header'>
+                  Implementations on Foreign Types<a href='#foreign-impls' class='anchor'></a>
+                </h2>
+            <h3 id='impl-NotificationHandler' class='impl'><span class='in-band'><code>impl <a class="trait" href="../jack/trait.NotificationHandler.html" title="trait jack::NotificationHandler">NotificationHandler</a> for <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a></code><a href='#impl-NotificationHandler' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/handler_impls.rs.html#8' title='goto source code'>[src]</a></span></h3>
+<div class='docblock'><p>A trivial handler that does nothing.</p>
+</div><span class='docblock autohide'><div class='impl-items'><h4 id='method.thread_init-1' class="method"><span id='thread_init.v-1' class='invisible'><code>fn <a href='../jack/trait.NotificationHandler.html#method.thread_init' class='fnname'>thread_init</a>(&amp;self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/callbacks.rs.html#21' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.shutdown-1' class="method"><span id='shutdown.v-1' class='invisible'><code>fn <a href='../jack/trait.NotificationHandler.html#method.shutdown' class='fnname'>shutdown</a>(&amp;mut self, _status: <a class="struct" href="../jack/struct.ClientStatus.html" title="struct jack::ClientStatus">ClientStatus</a>, _reason: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/callbacks.rs.html#31' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.freewheel-1' class="method"><span id='freewheel.v-1' class='invisible'><code>fn <a href='../jack/trait.NotificationHandler.html#method.freewheel' class='fnname'>freewheel</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _is_freewheel_enabled: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/callbacks.rs.html#34' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.buffer_size-1' class="method"><span id='buffer_size.v-1' class='invisible'><code>fn <a href='../jack/trait.NotificationHandler.html#method.buffer_size' class='fnname'>buffer_size</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _size: <a class="type" href="../jack/type.Frames.html" title="type jack::Frames">Frames</a>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/callbacks.rs.html#38-40' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.sample_rate-1' class="method"><span id='sample_rate.v-1' class='invisible'><code>fn <a href='../jack/trait.NotificationHandler.html#method.sample_rate' class='fnname'>sample_rate</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _srate: <a class="type" href="../jack/type.Frames.html" title="type jack::Frames">Frames</a>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/callbacks.rs.html#43-45' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.client_registration-1' class="method"><span id='client_registration.v-1' class='invisible'><code>fn <a href='../jack/trait.NotificationHandler.html#method.client_registration' class='fnname'>client_registration</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, _is_registered: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/callbacks.rs.html#48' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.port_registration-1' class="method"><span id='port_registration.v-1' class='invisible'><code>fn <a href='../jack/trait.NotificationHandler.html#method.port_registration' class='fnname'>port_registration</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;_: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_port_id: <a class="type" href="../jack/type.PortId.html" title="type jack::PortId">PortId</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_is_registered: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/callbacks.rs.html#51' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.port_rename-1' class="method"><span id='port_rename.v-1' class='invisible'><code>fn <a href='../jack/trait.NotificationHandler.html#method.port_rename' class='fnname'>port_rename</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;_: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_port_id: <a class="type" href="../jack/type.PortId.html" title="type jack::PortId">PortId</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_old_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_new_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><br>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/callbacks.rs.html#54-62' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.ports_connected-1' class="method"><span id='ports_connected.v-1' class='invisible'><code>fn <a href='../jack/trait.NotificationHandler.html#method.ports_connected' class='fnname'>ports_connected</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;_: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_port_id_a: <a class="type" href="../jack/type.PortId.html" title="type jack::PortId">PortId</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_port_id_b: <a class="type" href="../jack/type.PortId.html" title="type jack::PortId">PortId</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;_are_connected: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/callbacks.rs.html#65-72' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.graph_reorder-1' class="method"><span id='graph_reorder.v-1' class='invisible'><code>fn <a href='../jack/trait.NotificationHandler.html#method.graph_reorder' class='fnname'>graph_reorder</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/callbacks.rs.html#75-77' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.xrun-1' class="method"><span id='xrun.v-1' class='invisible'><code>fn <a href='../jack/trait.NotificationHandler.html#method.xrun' class='fnname'>xrun</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>) -&gt; <a class="enum" href="../jack/enum.Control.html" title="enum jack::Control">Control</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/callbacks.rs.html#83-85' title='goto source code'>[src]</a></span></h4>
+<h4 id='method.latency-1' class="method"><span id='latency.v-1' class='invisible'><code>fn <a href='../jack/trait.NotificationHandler.html#method.latency' class='fnname'>latency</a>(&amp;mut self, _: &amp;<a class="struct" href="../jack/struct.Client.html" title="struct jack::Client">Client</a>, _mode: <a class="enum" href="../jack/enum.LatencyType.html" title="enum jack::LatencyType">LatencyType</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack/client/callbacks.rs.html#143' title='goto source code'>[src]</a></span></h4>
+</div></span>
+        <h2 id='implementors' class='small-section-header'>
+          Implementors<a href='#implementors' class='anchor'></a>
+        </h2>
+        <ul class='item-list' id='implementors-list'>
+    </ul><script type="text/javascript" async
+                         src="../implementors/jack/trait.NotificationHandler.js">
+                 </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "jack";
+    </script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

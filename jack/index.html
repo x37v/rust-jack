@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `jack` crate.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, jack">
+
+    <title>jack - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc mod">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Crate jack</p><div class="block items"><ul><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#traits">Traits</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'jack', ty: 'mod', relpath: '../'};</script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>jack</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/jack/lib.rs.html#1-95' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Rust bindings for JACK, a real-time audio and midi library.</p>
+
+<h1 id='server' class='section-header'><a href='#server'>Server</a></h1>
+<p>JACK provides a high priority server to manipulate audio and midi across applications. The rust
+jack crate does not provide server creation functionality, so a server has to be set up with the
+<code>jackd</code> commandline tool, <code>qjackctl</code> the gui tool, or another method.</p>
+
+<h1 id='client' class='section-header'><a href='#client'>Client</a></h1>
+<p>Typically, applications connect clients to the server. For the rust jack crate, a connection can
+be made with <code>client::Client::new</code>, which returns a <code>client::Client</code>.</p>
+
+<p>The <code>Client</code> can query the server for information, register ports, and manage connections for
+ports.</p>
+
+<p>To commence processing audio/midi and other information in real-time, rust jack provides the
+<code>Client::activate_async</code>, which consumes the <code>Client</code>, an object that implements
+<code>NotificationHandler</code> and an object that implements <code>ProcessHandler</code> and returns a
+<code>AsyncClient</code>. <code>AsyncClient</code> processes the data in real-time with the provided handlers.</p>
+
+<h1 id='port' class='section-header'><a href='#port'>Port</a></h1>
+<p>A <code>Client</code> may obtain port information through the <code>Client::port_by_id</code> and
+<code>Client::port_by_name</code> methods. These ports can be used to manage connections or to obtain port
+metadata, though their port data (audio buffers and midi buffers) cannot be accessed safely.</p>
+
+<p>Ports can be registered with the <code>Client::register_port</code> method. This requires a <code>PortSpec</code>. The
+jack crate comes with common specs such as <code>AudioIn</code>, <code>AudioOut</code>, <code>MidiIn</code>, and
+<code>MidiOut</code>.</p>
+
+<p>To access the data of registered ports, use their specialized methods within a <code>ProcessHandler</code>
+callback. For example, <code>Port&lt;AudioIn&gt;::as_mut_slice</code> returns a audio buffer that can be written
+to.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.AsyncClient.html"
+                                  title='struct jack::AsyncClient'>AsyncClient</a></td>
+                           <td class='docblock-short'>
+                                <p>A JACK client that is processing data asynchronously, in real-time.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.AudioIn.html"
+                                  title='struct jack::AudioIn'>AudioIn</a></td>
+                           <td class='docblock-short'>
+                                <p><code>AudioIn</code> implements the <code>PortSpec</code> trait which, defines an
+endpoint for JACK. In this case, it is a readable 32 bit floating
+point buffer for audio.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.AudioOut.html"
+                                  title='struct jack::AudioOut'>AudioOut</a></td>
+                           <td class='docblock-short'>
+                                <p><code>AudioOut</code> implements the <code>PortSpec</code> trait, which defines an
+endpoint for JACK. In this case, it is a mutable 32 bit floating
+point buffer for audio.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.CLIENT_NAME_SIZE.html"
+                                  title='struct jack::CLIENT_NAME_SIZE'>CLIENT_NAME_SIZE</a></td>
+                           <td class='docblock-short'>
+                                <p>The maximum string length for port names.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Client.html"
+                                  title='struct jack::Client'>Client</a></td>
+                           <td class='docblock-short'>
+                                <p>A client to interact with a JACK server.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.ClientOptions.html"
+                                  title='struct jack::ClientOptions'>ClientOptions</a></td>
+                           <td class='docblock-short'>
+                                <p>Option flags for opening a JACK client.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.ClientStatus.html"
+                                  title='struct jack::ClientStatus'>ClientStatus</a></td>
+                           <td class='docblock-short'>
+                                <p>Status flags for JACK clients.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.ClosureProcessHandler.html"
+                                  title='struct jack::ClosureProcessHandler'>ClosureProcessHandler</a></td>
+                           <td class='docblock-short'>
+                                <p>Wrap a closure that can handle the <code>process</code> callback. This is called every time data from ports
+is available from JACK.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.CycleTimes.html"
+                                  title='struct jack::CycleTimes'>CycleTimes</a></td>
+                           <td class='docblock-short'>
+                                <p>Internal cycle timing information.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.MidiIn.html"
+                                  title='struct jack::MidiIn'>MidiIn</a></td>
+                           <td class='docblock-short'>
+                                <p><code>MidiIn</code> implements the <code>PortSpec</code> trait, which defines an endpoint for JACK. In this case, it
+defines midi input.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.MidiIter.html"
+                                  title='struct jack::MidiIter'>MidiIter</a></td>
+                           <td class='docblock-short'>
+                                <p>Iterate through Midi Messages within a <code>Port&lt;MidiIn&gt;</code>.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.MidiOut.html"
+                                  title='struct jack::MidiOut'>MidiOut</a></td>
+                           <td class='docblock-short'>
+                                <p><code>MidiOut</code> implements the <code>PortSpec</code> trait, which defines an endpoint for JACK. In this case, it
+defines a midi output.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.MidiWriter.html"
+                                  title='struct jack::MidiWriter'>MidiWriter</a></td>
+                           <td class='docblock-short'>
+                                <p>Write midi events to an output midi port.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.PORT_NAME_SIZE.html"
+                                  title='struct jack::PORT_NAME_SIZE'>PORT_NAME_SIZE</a></td>
+                           <td class='docblock-short'>
+                                <p>The maximum string length for port names.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.PORT_TYPE_SIZE.html"
+                                  title='struct jack::PORT_TYPE_SIZE'>PORT_TYPE_SIZE</a></td>
+                           <td class='docblock-short'>
+                                <p>The maximum string length for jack type names.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Port.html"
+                                  title='struct jack::Port'>Port</a></td>
+                           <td class='docblock-short'>
+                                <p>An endpoint to interact with JACK data streams, for audio, midi, etc...</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.PortFlags.html"
+                                  title='struct jack::PortFlags'>PortFlags</a></td>
+                           <td class='docblock-short'>
+                                <p>Flags for specifying port options.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.ProcessScope.html"
+                                  title='struct jack::ProcessScope'>ProcessScope</a></td>
+                           <td class='docblock-short'>
+                                <p><code>ProcessScope</code> provides information on the client and frame time information within a process
+callback.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.RawMidi.html"
+                                  title='struct jack::RawMidi'>RawMidi</a></td>
+                           <td class='docblock-short'>
+                                <p>Contains 8bit raw midi information along with a timestamp relative to the
+process cycle.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.RingBuffer.html"
+                                  title='struct jack::RingBuffer'>RingBuffer</a></td>
+                           <td class='docblock-short'>
+                                <p>A lock-free ringbuffer. The key attribute of a ringbuffer is that it can be safely accessed by
+two threads simultaneously, one reading from the buffer and the other writing to it - without
+using any synchronization or mutual exclusion primitives.  For this to work correctly, there can
+only be a single reader and a single writer thread. Their identities cannot be interchanged.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.RingBufferReader.html"
+                                  title='struct jack::RingBufferReader'>RingBufferReader</a></td>
+                           <td class='docblock-short'>
+                                <p>Read end of the ring buffer. Can only be used from one thread (can be different from the write
+thread).</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.RingBufferWriter.html"
+                                  title='struct jack::RingBufferWriter'>RingBufferWriter</a></td>
+                           <td class='docblock-short'>
+                                <p>Write end of the ring buffer. Can only be used from one thread (can be a different from the read
+thread).</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Unowned.html"
+                                  title='struct jack::Unowned'>Unowned</a></td>
+                           <td class='docblock-short'>
+                                <p><code>PortSpec</code> for a port that holds has no readable or writeable data from JACK on the created
+client. It can be used to connect ports or to obtain metadata.</p>
+                           </td>
+                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="enum" href="enum.Control.html"
+                                  title='enum jack::Control'>Control</a></td>
+                           <td class='docblock-short'>
+                                <p>Specify an option, either to continue processing, or to stop.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="enum" href="enum.Error.html"
+                                  title='enum jack::Error'>Error</a></td>
+                           <td class='docblock-short'>
+                                <p>An error that can occur in JACK.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="enum" href="enum.LatencyType.html"
+                                  title='enum jack::LatencyType'>LatencyType</a></td>
+                           <td class='docblock-short'>
+                                <p>Used by <code>NotificationHandler::latency()</code>.</p>
+                           </td>
+                       </tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="trait" href="trait.NotificationHandler.html"
+                                  title='trait jack::NotificationHandler'>NotificationHandler</a></td>
+                           <td class='docblock-short'>
+                                <p>Specifies callbacks for JACK.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="trait" href="trait.PortSpec.html"
+                                  title='trait jack::PortSpec'>PortSpec</a></td>
+                           <td class='docblock-short'>
+                                <p>Defines the configuration for a certain port to JACK, ie 32 bit floating audio input, 8 bit raw
+midi output, etc...</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="trait" href="trait.ProcessHandler.html"
+                                  title='trait jack::ProcessHandler'>ProcessHandler</a></td>
+                           <td class='docblock-short'>
+                                <p>Specifies real-time processing.</p>
+                           </td>
+                       </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.error_callback.html"
+                                  title='fn jack::error_callback'>error_callback</a></td>
+                           <td class='docblock-short'>
+                                <p>Get the error callback that was set using <code>set_error_callback</code>. This corresponds to the one set
+using rust-jack, not JACK itself. <code>None</code> is returned if rust-jack hasn&#39;t set a callback or has
+reset it to use stderr.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.get_time.html"
+                                  title='fn jack::get_time'>get_time</a></td>
+                           <td class='docblock-short'>
+                                <p>Return JACK&#39;s current system time in microseconds, using the JACK clock
+source.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.info_callback.html"
+                                  title='fn jack::info_callback'>info_callback</a></td>
+                           <td class='docblock-short'>
+                                <p>Resets the JACK info callback to use stdio.
+Get the info callback that was set using <code>set_info_callback</code>. This corresponds to the one set
+using rust-jack, not JACK itself. <code>None</code> is returned if rust-jack hasn&#39;t set a callback or has
+reset it to use stdout.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.reset_error_callback.html"
+                                  title='fn jack::reset_error_callback'>reset_error_callback</a></td>
+                           <td class='docblock-short'>
+                                <p>Restores the JACK info callback to the JACK default, which is to write to
+stderr.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.reset_info_callback.html"
+                                  title='fn jack::reset_info_callback'>reset_info_callback</a></td>
+                           <td class='docblock-short'>
+                                <p>Restores the JACK info callback to the JACK default, which is to write to
+stdout.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.set_error_callback.html"
+                                  title='fn jack::set_error_callback'>set_error_callback</a></td>
+                           <td class='docblock-short'>
+                                <p>Set the global JACK info callback. It is recommended to specify a callback that uses the <a href="https://cratse.io/crates/log">log
+crate</a>.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.set_info_callback.html"
+                                  title='fn jack::set_info_callback'>set_info_callback</a></td>
+                           <td class='docblock-short'>
+                                <p>Set the global JACK info callback. It is recommended to specify a callback that uses the <a href="https://cratse.io/crates/log">log
+crate</a>.</p>
+                           </td>
+                       </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.Frames.html"
+                                  title='type jack::Frames'>Frames</a></td>
+                           <td class='docblock-short'>
+                                <p>Type used to represent sample frame counts.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.PortId.html"
+                                  title='type jack::PortId'>PortId</a></td>
+                           <td class='docblock-short'>
+                                <p>Ports have unique ids. A port registration callback is the only place you
+ever need to know
+their value.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.Time.html"
+                                  title='type jack::Time'>Time</a></td>
+                           <td class='docblock-short'>
+                                <p>Type used to represent the value of free running monotonic clock with units
+of microseconds.</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "jack";
+    </script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

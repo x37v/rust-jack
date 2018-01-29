@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="Source to the Rust file `src/lib.rs`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang">
+
+    <title>lib.rs.html -- source</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc source">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content"><pre class="line-numbers"><span id="1"> 1</span>
+<span id="2"> 2</span>
+<span id="3"> 3</span>
+<span id="4"> 4</span>
+<span id="5"> 5</span>
+<span id="6"> 6</span>
+<span id="7"> 7</span>
+<span id="8"> 8</span>
+<span id="9"> 9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+<span id="12">12</span>
+<span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
+</pre><pre class="rust ">
+<span class="doccomment">//! Rust bindings for JACK, a real-time audio and midi library.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! # Server</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! JACK provides a high priority server to manipulate audio and midi across applications. The rust</span>
+<span class="doccomment">//! jack crate does not provide server creation functionality, so a server has to be set up with the</span>
+<span class="doccomment">//! `jackd` commandline tool, `qjackctl` the gui tool, or another method.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! # Client</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Typically, applications connect clients to the server. For the rust jack crate, a connection can</span>
+<span class="doccomment">//! be made with `client::Client::new`, which returns a `client::Client`.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The `Client` can query the server for information, register ports, and manage connections for</span>
+<span class="doccomment">//! ports.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! To commence processing audio/midi and other information in real-time, rust jack provides the</span>
+<span class="doccomment">//! `Client::activate_async`, which consumes the `Client`, an object that implements</span>
+<span class="doccomment">//! `NotificationHandler` and an object that implements `ProcessHandler` and returns a</span>
+<span class="doccomment">//! `AsyncClient`. `AsyncClient` processes the data in real-time with the provided handlers.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! # Port</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! A `Client` may obtain port information through the `Client::port_by_id` and</span>
+<span class="doccomment">//! `Client::port_by_name` methods. These ports can be used to manage connections or to obtain port</span>
+<span class="doccomment">//! metadata, though their port data (audio buffers and midi buffers) cannot be accessed safely.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! Ports can be registered with the `Client::register_port` method. This requires a `PortSpec`. The</span>
+<span class="doccomment">//! jack crate comes with common specs such as `AudioIn`, `AudioOut`, `MidiIn`, and</span>
+<span class="doccomment">//! `MidiOut`.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! To access the data of registered ports, use their specialized methods within a `ProcessHandler`</span>
+<span class="doccomment">//! callback. For example, `Port&lt;AudioIn&gt;::as_mut_slice` returns a audio buffer that can be written</span>
+<span class="doccomment">//! to.</span>
+<span class="attribute">#[<span class="ident">macro_use</span>]</span>
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">bitflags</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">jack_sys</span>;
+<span class="attribute">#[<span class="ident">macro_use</span>]</span>
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">lazy_static</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">libc</span>;
+
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">client</span>::{<span class="ident">AsyncClient</span>, <span class="ident">Client</span>, <span class="ident">ClientOptions</span>, <span class="ident">ClientStatus</span>, <span class="ident">ClosureProcessHandler</span>,
+                 <span class="ident">CycleTimes</span>, <span class="ident">NotificationHandler</span>, <span class="ident">ProcessHandler</span>, <span class="ident">ProcessScope</span>, <span class="ident">CLIENT_NAME_SIZE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">jack_enums</span>::{<span class="ident">Control</span>, <span class="ident">Error</span>, <span class="ident">LatencyType</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">logging</span>::{<span class="ident">error_callback</span>, <span class="ident">info_callback</span>, <span class="ident">reset_error_callback</span>, <span class="ident">reset_info_callback</span>,
+                  <span class="ident">set_error_callback</span>, <span class="ident">set_info_callback</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">port</span>::{<span class="ident">AudioIn</span>, <span class="ident">AudioOut</span>, <span class="ident">MidiIn</span>, <span class="ident">MidiIter</span>, <span class="ident">MidiOut</span>, <span class="ident">MidiWriter</span>, <span class="ident">Port</span>, <span class="ident">PortFlags</span>,
+               <span class="ident">PortSpec</span>, <span class="ident">RawMidi</span>, <span class="ident">Unowned</span>, <span class="ident">PORT_NAME_SIZE</span>, <span class="ident">PORT_TYPE_SIZE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">primitive_types</span>::{<span class="ident">Frames</span>, <span class="ident">PortId</span>, <span class="ident">Time</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ringbuffer</span>::{<span class="ident">RingBuffer</span>, <span class="ident">RingBufferReader</span>, <span class="ident">RingBufferWriter</span>};
+
+<span class="doccomment">/// Create and manage client connections to a JACK server.</span>
+<span class="kw">mod</span> <span class="ident">client</span>;
+
+<span class="doccomment">/// Create and manage JACK ring buffers.</span>
+<span class="kw">mod</span> <span class="ident">ringbuffer</span>;
+
+<span class="doccomment">/// Control error and info logging from JACK.</span>
+<span class="kw">mod</span> <span class="ident">logging</span>;
+
+<span class="doccomment">/// Enum types in jack.</span>
+<span class="kw">mod</span> <span class="ident">jack_enums</span>;
+
+<span class="kw">mod</span> <span class="ident">jack_utils</span>;
+
+<span class="doccomment">/// Types for safely interacting with port data from JACK.</span>
+<span class="kw">mod</span> <span class="ident">port</span>;
+
+<span class="doccomment">/// Platform independent types.</span>
+<span class="kw">mod</span> <span class="ident">primitive_types</span>;
+
+<span class="doccomment">/// Return JACK&#39;s current system time in microseconds, using the JACK clock</span>
+<span class="doccomment">/// source.</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_time</span>() <span class="op">-&gt;</span> <span class="ident">primitive_types</span>::<span class="ident">Time</span> {
+    <span class="kw">unsafe</span> { <span class="ident">jack_sys</span>::<span class="ident">jack_get_time</span>() }
+}
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">mod</span> <span class="ident">test</span> {
+    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">thread</span>, <span class="ident">time</span>};
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">time_can_get_time</span>() {
+        <span class="ident">get_time</span>();
+    }
+
+    <span class="attribute">#[<span class="ident">test</span>]</span>
+    <span class="kw">fn</span> <span class="ident">time_is_monotonically_increasing</span>() {
+        <span class="kw">let</span> <span class="ident">initial_t</span> <span class="op">=</span> <span class="ident">get_time</span>();
+        <span class="ident">thread</span>::<span class="ident">sleep</span>(<span class="ident">time</span>::<span class="ident">Duration</span>::<span class="ident">from_millis</span>(<span class="number">100</span>));
+        <span class="kw">let</span> <span class="ident">later_t</span> <span class="op">=</span> <span class="ident">get_time</span>();
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">initial_t</span> <span class="op">&lt;</span> <span class="ident">later_t</span>, <span class="string">&quot;failed {} &lt; {}&quot;</span>, <span class="ident">initial_t</span>, <span class="ident">later_t</span>);
+    }
+}
+</pre>
+</section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "jack";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

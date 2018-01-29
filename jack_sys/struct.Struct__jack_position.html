@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Struct__jack_position` struct in crate `jack_sys`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Struct__jack_position">
+
+    <title>jack_sys::Struct__jack_position - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Struct Struct__jack_position</p><div class="block items"><a class="sidebar-title" href="#fields">Fields</a><div class="sidebar-links"><a href="#structfield.unique_1">unique_1</a><a href="#structfield.usecs">usecs</a><a href="#structfield.frame_rate">frame_rate</a><a href="#structfield.frame">frame</a><a href="#structfield.valid">valid</a><a href="#structfield.bar">bar</a><a href="#structfield.beat">beat</a><a href="#structfield.tick">tick</a><a href="#structfield.bar_start_tick">bar_start_tick</a><a href="#structfield.beats_per_bar">beats_per_bar</a><a href="#structfield.beat_type">beat_type</a><a href="#structfield.ticks_per_beat">ticks_per_beat</a><a href="#structfield.beats_per_minute">beats_per_minute</a><a href="#structfield.frame_time">frame_time</a><a href="#structfield.next_time">next_time</a><a href="#structfield.bbt_offset">bbt_offset</a><a href="#structfield.audio_frames_per_video_frame">audio_frames_per_video_frame</a><a href="#structfield.video_offset">video_offset</a><a href="#structfield.padding">padding</a><a href="#structfield.unique_2">unique_2</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Copy">Copy</a><a href="#impl-Clone">Clone</a><a href="#impl-Default">Default</a></div></div><p class='location'><a href='index.html'>jack_sys</a></p><script>window.sidebarCurrent = {name: 'Struct__jack_position', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>jack_sys</a>::<wbr><a class="struct" href=''>Struct__jack_position</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/jack_sys/lib.rs.html#157-178' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'><div class="docblock attributes">#[repr(C, packed)]
+</div>pub struct Struct__jack_position {
+    pub unique_1: <a class="type" href="../jack_sys/type.jack_unique_t.html" title="type jack_sys::jack_unique_t">jack_unique_t</a>,
+    pub usecs: <a class="type" href="../jack_sys/type.jack_time_t.html" title="type jack_sys::jack_time_t">jack_time_t</a>,
+    pub frame_rate: <a class="type" href="../jack_sys/type.jack_nframes_t.html" title="type jack_sys::jack_nframes_t">jack_nframes_t</a>,
+    pub frame: <a class="type" href="../jack_sys/type.jack_nframes_t.html" title="type jack_sys::jack_nframes_t">jack_nframes_t</a>,
+    pub valid: <a class="type" href="../jack_sys/type.jack_position_bits_t.html" title="type jack_sys::jack_position_bits_t">jack_position_bits_t</a>,
+    pub bar: <a class="type" href="../libc/type.int32_t.html" title="type libc::int32_t">int32_t</a>,
+    pub beat: <a class="type" href="../libc/type.int32_t.html" title="type libc::int32_t">int32_t</a>,
+    pub tick: <a class="type" href="../libc/type.int32_t.html" title="type libc::int32_t">int32_t</a>,
+    pub bar_start_tick: <a class="type" href="../libc/type.c_double.html" title="type libc::c_double">c_double</a>,
+    pub beats_per_bar: <a class="type" href="../libc/type.c_float.html" title="type libc::c_float">c_float</a>,
+    pub beat_type: <a class="type" href="../libc/type.c_float.html" title="type libc::c_float">c_float</a>,
+    pub ticks_per_beat: <a class="type" href="../libc/type.c_double.html" title="type libc::c_double">c_double</a>,
+    pub beats_per_minute: <a class="type" href="../libc/type.c_double.html" title="type libc::c_double">c_double</a>,
+    pub frame_time: <a class="type" href="../libc/type.c_double.html" title="type libc::c_double">c_double</a>,
+    pub next_time: <a class="type" href="../libc/type.c_double.html" title="type libc::c_double">c_double</a>,
+    pub bbt_offset: <a class="type" href="../jack_sys/type.jack_nframes_t.html" title="type jack_sys::jack_nframes_t">jack_nframes_t</a>,
+    pub audio_frames_per_video_frame: <a class="type" href="../libc/type.c_float.html" title="type libc::c_float">c_float</a>,
+    pub video_offset: <a class="type" href="../jack_sys/type.jack_nframes_t.html" title="type jack_sys::jack_nframes_t">jack_nframes_t</a>,
+    pub padding: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="type" href="../libc/type.int32_t.html" title="type libc::int32_t">int32_t</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 7]</a>,
+    pub unique_2: <a class="type" href="../jack_sys/type.jack_unique_t.html" title="type jack_sys::jack_unique_t">jack_unique_t</a>,
+}</pre><h2 id='fields' class='fields small-section-header'>
+                       Fields<a href='#fields' class='anchor'></a></h2><span id="structfield.unique_1" class="structfield small-section-header">
+                           <a href="#structfield.unique_1" class="anchor field"></a>
+                           <span id="unique_1.v" class='invisible'>
+                           <code>unique_1: <a class="type" href="../jack_sys/type.jack_unique_t.html" title="type jack_sys::jack_unique_t">jack_unique_t</a></code>
+                           </span></span><span id="structfield.usecs" class="structfield small-section-header">
+                           <a href="#structfield.usecs" class="anchor field"></a>
+                           <span id="usecs.v" class='invisible'>
+                           <code>usecs: <a class="type" href="../jack_sys/type.jack_time_t.html" title="type jack_sys::jack_time_t">jack_time_t</a></code>
+                           </span></span><span id="structfield.frame_rate" class="structfield small-section-header">
+                           <a href="#structfield.frame_rate" class="anchor field"></a>
+                           <span id="frame_rate.v" class='invisible'>
+                           <code>frame_rate: <a class="type" href="../jack_sys/type.jack_nframes_t.html" title="type jack_sys::jack_nframes_t">jack_nframes_t</a></code>
+                           </span></span><span id="structfield.frame" class="structfield small-section-header">
+                           <a href="#structfield.frame" class="anchor field"></a>
+                           <span id="frame.v" class='invisible'>
+                           <code>frame: <a class="type" href="../jack_sys/type.jack_nframes_t.html" title="type jack_sys::jack_nframes_t">jack_nframes_t</a></code>
+                           </span></span><span id="structfield.valid" class="structfield small-section-header">
+                           <a href="#structfield.valid" class="anchor field"></a>
+                           <span id="valid.v" class='invisible'>
+                           <code>valid: <a class="type" href="../jack_sys/type.jack_position_bits_t.html" title="type jack_sys::jack_position_bits_t">jack_position_bits_t</a></code>
+                           </span></span><span id="structfield.bar" class="structfield small-section-header">
+                           <a href="#structfield.bar" class="anchor field"></a>
+                           <span id="bar.v" class='invisible'>
+                           <code>bar: <a class="type" href="../libc/type.int32_t.html" title="type libc::int32_t">int32_t</a></code>
+                           </span></span><span id="structfield.beat" class="structfield small-section-header">
+                           <a href="#structfield.beat" class="anchor field"></a>
+                           <span id="beat.v" class='invisible'>
+                           <code>beat: <a class="type" href="../libc/type.int32_t.html" title="type libc::int32_t">int32_t</a></code>
+                           </span></span><span id="structfield.tick" class="structfield small-section-header">
+                           <a href="#structfield.tick" class="anchor field"></a>
+                           <span id="tick.v" class='invisible'>
+                           <code>tick: <a class="type" href="../libc/type.int32_t.html" title="type libc::int32_t">int32_t</a></code>
+                           </span></span><span id="structfield.bar_start_tick" class="structfield small-section-header">
+                           <a href="#structfield.bar_start_tick" class="anchor field"></a>
+                           <span id="bar_start_tick.v" class='invisible'>
+                           <code>bar_start_tick: <a class="type" href="../libc/type.c_double.html" title="type libc::c_double">c_double</a></code>
+                           </span></span><span id="structfield.beats_per_bar" class="structfield small-section-header">
+                           <a href="#structfield.beats_per_bar" class="anchor field"></a>
+                           <span id="beats_per_bar.v" class='invisible'>
+                           <code>beats_per_bar: <a class="type" href="../libc/type.c_float.html" title="type libc::c_float">c_float</a></code>
+                           </span></span><span id="structfield.beat_type" class="structfield small-section-header">
+                           <a href="#structfield.beat_type" class="anchor field"></a>
+                           <span id="beat_type.v" class='invisible'>
+                           <code>beat_type: <a class="type" href="../libc/type.c_float.html" title="type libc::c_float">c_float</a></code>
+                           </span></span><span id="structfield.ticks_per_beat" class="structfield small-section-header">
+                           <a href="#structfield.ticks_per_beat" class="anchor field"></a>
+                           <span id="ticks_per_beat.v" class='invisible'>
+                           <code>ticks_per_beat: <a class="type" href="../libc/type.c_double.html" title="type libc::c_double">c_double</a></code>
+                           </span></span><span id="structfield.beats_per_minute" class="structfield small-section-header">
+                           <a href="#structfield.beats_per_minute" class="anchor field"></a>
+                           <span id="beats_per_minute.v" class='invisible'>
+                           <code>beats_per_minute: <a class="type" href="../libc/type.c_double.html" title="type libc::c_double">c_double</a></code>
+                           </span></span><span id="structfield.frame_time" class="structfield small-section-header">
+                           <a href="#structfield.frame_time" class="anchor field"></a>
+                           <span id="frame_time.v" class='invisible'>
+                           <code>frame_time: <a class="type" href="../libc/type.c_double.html" title="type libc::c_double">c_double</a></code>
+                           </span></span><span id="structfield.next_time" class="structfield small-section-header">
+                           <a href="#structfield.next_time" class="anchor field"></a>
+                           <span id="next_time.v" class='invisible'>
+                           <code>next_time: <a class="type" href="../libc/type.c_double.html" title="type libc::c_double">c_double</a></code>
+                           </span></span><span id="structfield.bbt_offset" class="structfield small-section-header">
+                           <a href="#structfield.bbt_offset" class="anchor field"></a>
+                           <span id="bbt_offset.v" class='invisible'>
+                           <code>bbt_offset: <a class="type" href="../jack_sys/type.jack_nframes_t.html" title="type jack_sys::jack_nframes_t">jack_nframes_t</a></code>
+                           </span></span><span id="structfield.audio_frames_per_video_frame" class="structfield small-section-header">
+                           <a href="#structfield.audio_frames_per_video_frame" class="anchor field"></a>
+                           <span id="audio_frames_per_video_frame.v" class='invisible'>
+                           <code>audio_frames_per_video_frame: <a class="type" href="../libc/type.c_float.html" title="type libc::c_float">c_float</a></code>
+                           </span></span><span id="structfield.video_offset" class="structfield small-section-header">
+                           <a href="#structfield.video_offset" class="anchor field"></a>
+                           <span id="video_offset.v" class='invisible'>
+                           <code>video_offset: <a class="type" href="../jack_sys/type.jack_nframes_t.html" title="type jack_sys::jack_nframes_t">jack_nframes_t</a></code>
+                           </span></span><span id="structfield.padding" class="structfield small-section-header">
+                           <a href="#structfield.padding" class="anchor field"></a>
+                           <span id="padding.v" class='invisible'>
+                           <code>padding: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="type" href="../libc/type.int32_t.html" title="type libc::int32_t">int32_t</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 7]</a></code>
+                           </span></span><span id="structfield.unique_2" class="structfield small-section-header">
+                           <a href="#structfield.unique_2" class="anchor field"></a>
+                           <span id="unique_2.v" class='invisible'>
+                           <code>unique_2: <a class="type" href="../jack_sys/type.jack_unique_t.html" title="type jack_sys::jack_unique_t">jack_unique_t</a></code>
+                           </span></span>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Copy' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="struct" href="../jack_sys/struct.Struct__jack_position.html" title="struct jack_sys::Struct__jack_position">Struct__jack_position</a></code><a href='#impl-Copy' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack_sys/lib.rs.html#156' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../jack_sys/struct.Struct__jack_position.html" title="struct jack_sys::Struct__jack_position">Struct__jack_position</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack_sys/lib.rs.html#179-183' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; Self</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack_sys/lib.rs.html#180-182' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 id='impl-Default' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="../jack_sys/struct.Struct__jack_position.html" title="struct jack_sys::Struct__jack_position">Struct__jack_position</a></code><a href='#impl-Default' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack_sys/lib.rs.html#184-188' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class="method"><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; Self</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/jack_sys/lib.rs.html#185-187' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns the &quot;default value&quot; for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "jack_sys";
+    </script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
